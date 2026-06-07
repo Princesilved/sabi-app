@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --font-display: "Instrument Serif";
+  --font-sans: "DM Sans";
+  --font-mono: "JetBrains Mono";
+
+  /* Light theme (default) */
+  --bg: #f2ede3;
+  --bg-deep: #e8e0d0;
+  --paper: #fbf8f2;
+  --text: #1a1612;
+  --text-soft: #2a2520;
+  --text-muted: rgba(26, 22, 18, 0.6);
+  --border: rgba(26, 22, 18, 0.12);
+  --border-strong: rgba(26, 22, 18, 0.28);
+  --jollof: #d44621;
+  --jollof-deep: #a8330f;
+  --moss: #2d4a2b;
+  --gold: #b5894a;
+  --card: #fbf8f2;
+  --inverse-bg: #1a1612;
+  --inverse-text: #f2ede3;
+
+  /* RGB channels for Tailwind alpha-value support (text-ink/50 etc.) */
+  --bg-rgb: 242 237 227;
+  --bg-deep-rgb: 232 224 208;
+  --paper-rgb: 251 248 242;
+  --text-rgb: 26 22 18;
+  --text-soft-rgb: 42 37 32;
+}
+
+.dark {
+  --bg: #14110e;
+  --bg-deep: #1c1813;
+  --paper: #1f1b16;
+  --text: #f2ede3;
+  --text-soft: #e8e0d0;
+  --text-muted: rgba(242, 237, 227, 0.55);
+  --border: rgba(242, 237, 227, 0.12);
+  --border-strong: rgba(242, 237, 227, 0.28);
+  --jollof: #e85a36;
+  --jollof-deep: #d44621;
+  --moss: #6fa86a;
+  --gold: #cda35f;
+  --card: #221d18;
+  --inverse-bg: #f2ede3;
+  --inverse-text: #1a1612;
+
+  /* RGB channels for dark theme */
+  --bg-rgb: 20 17 14;
+  --bg-deep-rgb: 28 24 19;
+  --paper-rgb: 31 27 22;
+  --text-rgb: 242 237 227;
+  --text-soft-rgb: 232 224 208;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "ss02";
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+.dark .grain::before {
+  mix-blend-mode: screen;
+  opacity: 0.05;
+}
+
+/* Utility classes driven by theme vars */
+.sabi-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.sabi-input::placeholder {
+  color: var(--text-muted);
+}
+.sabi-input:focus {
+  outline: none;
+  border-color: var(--jollof);
+  box-shadow: 0 0 0 2px rgba(212, 70, 33, 0.15);
+}
+
+.sabi-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.sabi-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--inverse-bg);
+  color: var(--inverse-text);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s, opacity 0.2s;
+}
+.sabi-btn-primary:hover {
+  background: var(--jollof);
+  color: #fff;
+}
+.sabi-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sabi-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.sabi-btn-secondary:hover {
+  background: var(--bg-deep);
+}
+
+.sabi-btn-jollof {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--jollof);
+  color: #fff;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.sabi-btn-jollof:hover {
+  background: var(--jollof-deep);
+}
+.sabi-btn-jollof:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sabi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s,
+    background 0.3s;
+}
+
+.sabi-card-hover:hover {
+  border-color: var(--jollof);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 100px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rise {
+  animation: rise 0.4s ease-out forwards;
+}
