@@ -57,7 +57,7 @@ export function BusinessProvider({ children }: { children: ReactNode }) {
 
   const currentBusiness = businesses?.find((b: any) => b._id === businessId);
   const permissions = perms?.permissions ?? [];
-  const can = (perm: string) => permissions.includes(perm);
+  const can = (perm: string) => (permissions as string[]).includes(perm);
 
   return (
     <BusinessContext.Provider
